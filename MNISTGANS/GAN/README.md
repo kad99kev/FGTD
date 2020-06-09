@@ -5,7 +5,7 @@ GANs belong to a set of algorithms named generative models. These algorithms bel
 
 ### GAN architecture
 
-{image here}
+![screenshot](MNISTGANS/GANS/images/GAN_architecture.jpeg)
 
 The architecture comprises of 2 models
  - The first model is called a Generator and it aims to generate new data similar to the expected one. The Generator could be asimilated to a human art forger, which creates fake works of art.
