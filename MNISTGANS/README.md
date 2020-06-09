@@ -8,5 +8,5 @@ We have implemented different GAN variations on the MNIST dataset on our path to
 
 Listed below are the different implementations:
 
- - [GAN](MNISTGANS/GAN)
- - [DCGAN](MNISTGANS/DCGAN)
+ - [GAN](GAN)
+ - [DCGAN](DCGAN)
