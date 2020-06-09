@@ -28,3 +28,9 @@ Note : the logarithm of probabilty is used instead of loss function since using 
 ### Training a GAN
 
 ![screenshot](images/Training_image.png)
+
+### Reference
+[GANs from scratch](https://medium.com/ai-society/gans-from-scratch-1-a-deep-introduction-with-code-in-pytorch-and-tensorflow-cb03cdcdba0f)
+[Generative Adversarial Networks](https://arxiv.org/abs/1406.2661)
+
+
