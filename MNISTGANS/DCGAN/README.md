@@ -5,8 +5,6 @@ Radford, et al. (2016) wrote a paper - Unsupervised Representation Learning with
 
 DCGANs are a class of convolutional GANs, where both the generator and discriminator networks are comprised of convolutional neural networks (CNNs).
 
-DCGANs are perfect for all those applications which require images or videos to be fed to GANs, as they generate new and plausible images and videos alike.
-
 ### DCGAN architecture
 
 **Generator Architecture**
