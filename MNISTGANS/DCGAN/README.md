@@ -8,7 +8,16 @@ DCGANs are a class of convolutional GANs, where both the generator and discrimin
 DCGANs are perfect for all those applications which require images or videos to be fed to GANs, as they generate new and plausible images and videos alike.
 
 ### DCGAN architecture
-{ Image comes here }
+
+**Generator Architecture**
+![generator_arch](images/gen_arch.png)
+
+
+**Overall Architecture**
+
+![generator_arch](images/overall_arch.png)
+
+
 
 Similar to a GAN, the DCGAN contains two models:
 
