@@ -5,7 +5,7 @@ GANs belong to a set of algorithms named generative models. These algorithms bel
 
 ### GAN architecture
 
-![screenshot](MNISTGANS/GANS/images/GAN_architecture.jpeg)
+![screenshot](images/GAN_architecture.jpeg)
 
 The architecture comprises of 2 models
  - The first model is called a Generator and it aims to generate new data similar to the expected one. The Generator could be asimilated to a human art forger, which creates fake works of art.
@@ -18,10 +18,13 @@ Conversely, a second neural network D(x, θ₂) models the discriminator and out
 
 Note :  θᵢ represents the weight or parameters that define a neural network.
 
+![screenshot](images/log_Loss.png)
+
 As a result, the Discriminator is trained to correctly classify the input data as either real or fake. This means it’s weights are updated as to maximize the probability that any real data input x is classified as belonging to the real dataset, while minimizing the probability that any fake image is classified as belonging to the real dataset. In more technical terms, the loss/error function used maximizes the function D(x), and it also minimizes D(G(z)).
 Furthermore, the Generator is trained to fool the Discriminator by generating data as realistic as possible, which means that the Generator’s weight’s are optimized to maximize the probability that any fake image is classified as belonging to the real dataset. Formally this means that the loss/error function used for this network maximizes D(G(z)).
 
 Note : the logarithm of probabilty is used instead of loss function since using the loss heavily penalises classifiers about an incorrect classification.
 
 ### Training a GAN
-{ training}
+
+![screenshot](images/Training_image.png)
