@@ -16,11 +16,9 @@ We have implemented different GAN variations on the MNIST dataset on our path to
  
  - [DCGAN](DCGAN)
  
- <div align="center">
   
  ![DCGANs demo](DCGAN/assets/fashionmnist-dcgan.gif)
  
- </div>
  
  ___
  
