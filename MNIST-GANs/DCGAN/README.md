@@ -30,6 +30,6 @@ Similar to a GAN, the DCGAN contains two models:
 Finally, now that we have all of the parts of the GAN framework defined, we can train it. However, training GANs is somewhat of an art form, as incorrect hyperparameter settings lead to mode collapse with little explanation of what went wrong.
 
 ### References
-- [Original Paper.](https://arxiv.org/abs/1511.06434)
+- [Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks.](https://arxiv.org/abs/1511.06434)
 - [Understanding Deep Convolutional GANs with a PyTorch implementation.](https://iq.opengenus.org/deep-convolutional-gans-pytorch/)
 - [PyTorch DCGAN tutorial.](https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html)
