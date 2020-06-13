@@ -12,7 +12,7 @@ During CGAN training, the Generator learns to produce realistic examples for eac
 Finally, now that we have all of the parts of the GAN framework defined, we can train it. However, training GANs is somewhat of an art form, as incorrect hyperparameter settings lead to mode collapse with little explanation of what went wrong.
 
 ### References
- - [Original paper.](https://arxiv.org/pdf/1411.1784.pdf)
+ - [Conditional Generative Adversarial Nets](https://arxiv.org/pdf/1411.1784.pdf)
  - [Pytorch cGAN](https://github.com/eriklindernoren/PyTorch-GAN/tree/master/implementations/cgan)
 
 
