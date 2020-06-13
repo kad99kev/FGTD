@@ -8,11 +8,9 @@ We have implemented different GAN variations on the MNIST dataset on our path to
 
  - [GAN](GAN)
  
- <div align="center">
-  
+
  ![GANs demo](GAN/assets/digitmnist-gan.gif)
- 
- </div>
+
  
  ___
  
