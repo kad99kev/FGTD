@@ -10,3 +10,4 @@ Listed below are the different implementations:
 
  - [GAN](GAN)
  - [DCGAN](DCGAN)
+ - [cGAN](CGAN)
