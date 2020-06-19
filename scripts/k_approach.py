@@ -110,39 +110,68 @@ def generate_hairstyle(hairstyle_attributes, gender):
 	hair_type = {'Bald', 'Straight_Hair', 'Wavy_Hair', 'Receding_Hairline'}
 	hair_colour = {'Black_Hair', 'Blond_Hair', 'Brown_Hair', 'Gray_Hair'}
 
-	def return_formation(style=None, colour=None):
-		flip = random.random()
-		if style is not None and colour is not None:
-			if flip <= 0.5:
-				return random.choice([f'has {style} hair which is {colour} in colour.', f'has {style} hair which is {colour}.', f'has {style} {colour} hair.'])
+	def return_formation(gender, style=None, colour=None):
+		
+		if random.random() <= 0.5:
+			if gender:
+				sentence = 'His'
 			else:
-				return random.choice([f'has {colour} hair which is {style} in style.', f'has {colour} hair which is {style}.', f'has {colour} {wavy} hair.'])
+				sentence = 'Her'
 
-		elif style is not None:
-			pass
+			if style is not None and colour is not None:
+				if random.random() <= 0.5:
+					return sentence + ' ' + random.choice([f'hair is {style} and {colour} in colour.', f'hair is {style} and {colour}.'])
+				else:
+					return sentence + ' ' + random.choice([f'hair is {colour} and {style}.', f'hair is {colour} and {style} in style.'])
 
+			if style is not None:
+				return sentence + ' hair is ' + style + '.'
+			else:
+				return sentence + ' hair is ' + colour + ' in colour.'
 		else:
-			pass
+			if gender:
+				sentence = 'He'
+			else:
+				sentence = 'She'
+			
+			if style is not None and colour is not None:
+				if random.random() <= 0.5:
+					return sentence + ' ' + random.choice([f'has {style} hair which is {colour} in colour.', f'has {style} hair which is {colour}.', f'has {style} {colour} hair.'])
+				else:
+					return sentence + ' ' + random.choice([f'has {colour} hair which is {style} in style.', f'has {colour} hair which is {style}.', f'has {colour} {style} hair.'])
+			
+			if style is not None:
+				return sentence + ' has ' + style + ' hair.'
+			else:
+				return sentence + ' hair ' + colour + ' hair.'
 
 
-	if gender:
-		sentence = 'He'
-	else:
-		sentence = 'She'
 
 	if len(hairstyle_attributes) == 1:
+	
 		attribute = ' '.join(hairstyle_attributes[0].lower().split('_'))
+		
 		if attribute == 'bald':
+			if gender:
+				sentence = 'He'
+			else:
+				sentence = 'She'
 			return sentence + ' is ' + attribute + '.' 
-		return sentence + ' has ' + attribute + '.'
+		
+		if hairstyle_attributes[0] in hair_type:
+			return return_formation(gender, style=attribute)
+		else:
+			return return_formation(gender, colour=attribute)
+
 	else:
 		if hairstyle_attributes[0] in hair_type:
-			style = hairstyle_attributes[0].split('_')[0]
-			colour = hairstyle_attributes[1].split('_')[0]
+			style = hairstyle_attributes[0].lower().split('_')[0]
+			colour = hairstyle_attributes[1].lower().split('_')[0]
+			return return_formation(gender, style, colour)
 		else:
-			style = hairstyle_attributes[1].split('_')[0]
-			colour = hairstyle_attributes[0].split('_')[0]
-		print(style, colour)
+			style = hairstyle_attributes[1].lower().split('_')[0]
+			colour = hairstyle_attributes[0].lower().split('_')[0]
+			return return_formation(gender, style, colour)
 	
 #faical features
 def face_features(face_feature, gender):
