@@ -244,13 +244,13 @@ def generate_appearance(appearance, is_male):
         return sentence + ' is smiling.'
     
     if is_smiling and smile_begin:
-        # If there are other attributes, but sentence should begin with is smiling
+        # If there are other attributes but sentence should begin with is smiling
         sentence += ' is smiling'
-        sentence += ' and' if len(qualities) == 0 else ',' if len(qualities) > 0 else ''
+        sentence += ',' if len(qualities) > 0 else ''
 
     if len(qualities) == 1:
         sentence += random.choice([' looks', ' is', ' seems']) + ' ' + qualities[0].lower()
-        sentence += ' and' if len(extras) == 1 and smile_begin else ',' if len(extras) > 0 else ''
+        sentence += ',' if len(extras) > 1 else ''
     elif len(qualities) > 1:
         sentence += random.choice([' looks', ' is', ' seems'])
         for i in range(len(qualities)):
@@ -263,12 +263,12 @@ def generate_appearance(appearance, is_male):
                 sentence += ' ' +  attribute + ','
 
     if is_smiling and not smile_begin:
-        # If there are other attributes, but sentence should end with is smiling
+        # If there are other attributes but is smiling comes later
         if len(extras) == 0:
             sentence = sentence.replace(' and', ',')
             sentence += ' and'
         sentence += ' is smiling'
-        sentence += ',' if len(extras) > 1 else ' and' if len(extras) == 1 else ''
+        sentence += ',' if len(extras) > 1 else ''
 
 
     extras = [' '.join(e.split('_')) for e in extras]
@@ -276,6 +276,10 @@ def generate_appearance(appearance, is_male):
     if len(extras) == 0:
         return sentence + '.'
     elif len(extras) == 1:
+        if len(qualities) > 0 or is_smiling:
+            if smile_begin:
+                sentence = sentence[:-1]
+            sentence += ' and'
         return sentence + ' has ' + extras[0].lower() + '.'
     else:
         sentence += ' has'
@@ -344,7 +348,7 @@ def generate_accessories(accessories, is_male):
 # for f in test_features:
 # 	print(generate_facial_features(f, True))
 
-# test_features = [['Attractive', 'Young', 'Pale_Skin', 'Smiling', 'Rosy_Cheeks'], ['Smiling', 'Rosy_Cheeks'], ['Attractive', 'Smiling', 'Rosy_Cheeks', 'Heavy_Makeup'], ['Attractive', 'Smiling', 'Heavy_Makeup'], ['Young', 'Smiling', 'Heavy_Makeup'], ['Attractive', 'Smiling', 'Young'], ['Attractive', 'Young']]
+# test_features = [['Attractive', 'Young', 'Pale_Skin', 'Smiling', 'Rosy_Cheeks'], ['Smiling', 'Rosy_Cheeks'], ['Smiling', 'Rosy_Cheeks'], ['Attractive', 'Rosy_Cheeks'], ['Attractive', 'Smiling', 'Rosy_Cheeks', 'Heavy_Makeup'], ['Rosy_Cheeks', 'Heavy_Makeup'], ['Rosy_Cheeks', 'Heavy_Makeup', 'Smiling'], ['Young', 'Attractive'], ['Young', 'Attractive', 'Smiling'], ['Young'], ['Rosy_Cheeks']]
 # for f in test_features:
 # 	print(generate_appearance(f, True))
 
