@@ -6,8 +6,10 @@ import numpy as np
 
 from tqdm import tqdm
 
+# Read CSV
 df = pd.read_csv('scripts/dataset/list_attr_celeba.csv')
 # df = df.head(21)
+
 # Numpy array of dataframe column names
 cols = np.array(df.columns)
 
@@ -17,7 +19,7 @@ b = (df.values == 1)
 # List comprehension to join column names for each boolean row result
 df['attributes'] = [cols[(row_index)] for row_index in b]
 
-
+''' Creating sets for categorizing '''
 # Facial Structure
 face_structure = {'Chubby', 'Double_Chin', 'Oval_Face', 'High_Cheekbones'}
 
@@ -43,9 +45,19 @@ accessories = {'Wearing_Earrings', 'Wearing_Hat', 'Wearing_Lipstick', 'Wearing_N
 #     'No_Beard' : " ",
 # }
 
+''' 
+Functions to convert attributes to sentences
 
+1. Each function has its own base case and scenarios.
+2. To introduce variations, different choice of words are used, however it is ensured that the grammatical structure is maintained.
+
+'''
 # Face Strucute 
 def generate_face_structure(face_attributes, is_male):
+    '''
+    Generates a sentence based on the attributes that describe the facial structure
+    '''
+
     features = {
         'Chubby': ['has a chubby face', 'is chubby', 'looks chubby'],
         'High_Cheekbones': ['high cheekbones', 'pretty high cheekbones'],
@@ -75,6 +87,7 @@ def generate_face_structure(face_attributes, is_male):
                 sentence = sentence[:-1]
                 sentence += ' and'
                 if face_attributes[i - 1] == 'Chubby':
+                    # For the current attribute to be grammatically correct incase the previous attribute was chubby
                     sentence += ' has'
                 sentence += ' ' + attribute + '.'
         
@@ -82,6 +95,10 @@ def generate_face_structure(face_attributes, is_male):
 
 # Facial Hair
 def generate_facial_hair(facial_hair_attributes, is_male):
+    '''
+    Generates a sentence based on the attributes that describe facial hair
+    '''
+
     build = ['has a', 'wears a', 'sports a', 'grows a']
 
     sentence = 'He' if is_male else 'She'
@@ -95,6 +112,7 @@ def generate_facial_hair(facial_hair_attributes, is_male):
             conj = random.choice(build)
 
             if attribute == 'sideburns':
+                # Sideburns is plural, dropping 'a'
                 conj = 'has'
 
             if i < len(facial_hair_attributes) - 1:
@@ -106,9 +124,17 @@ def generate_facial_hair(facial_hair_attributes, is_male):
 
 # Hairstyle 
 def generate_hairstyle(hairstyle_attributes, is_male):
+    '''
+    Generates a sentence based on the attributes that describe the hairstyle
+    '''
+
     hair_type = {'Bald', 'Straight_Hair', 'Wavy_Hair', 'Receding_Hairline'}
 
     def return_formation(is_male, style=None, colour=None):
+        ''' 
+        Returns a sentence formation based on the gender, style and colour
+        Made this a function inorder to cover different variations for description
+        '''
         
         if random.random() <= 0.5:
             sentence = 'His' if is_male else 'Her'
@@ -162,11 +188,18 @@ def generate_hairstyle(hairstyle_attributes, is_male):
 
 # Facial Features
 def generate_facial_features(facial_features, is_male):
+    '''
+    Generates a sentence based on the attributes that describe the facial features
+    '''
     
     sentence = 'He' if is_male else 'She'
     sentence += ' has'
 
     def nose_and_mouth(attribute):
+        '''
+        Returns a grammatically correct sentence based on the attribute
+        '''
+
         if attribute == 'big nose' or attribute == 'pointy nose':
             return 'a ' + attribute
         elif attribute == 'mouth slightly open':
@@ -191,7 +224,14 @@ def generate_facial_features(facial_features, is_male):
     
 # Appearance
 def generate_appearance(appearance, is_male):
+    '''
+    Generates a sentence based on the attributes that describe the appearance
+    '''
 
+    # Further divides into 3 sections
+    # is_smiling for smile, this comes either before qualities, or after. It always comes before extras
+    # qualities for young and attractive
+    # extras for remaining
     is_smiling = 'Smiling' in appearance
     smile_begin = False if not is_smiling else True if random.random() <= 0.5 else False
     qualities = list(set(appearance) & {'Young', 'Attractive'})
@@ -200,9 +240,11 @@ def generate_appearance(appearance, is_male):
     sentence = random.choice(['He', 'The man', 'The gentleman', 'The male']) if is_male else random.choice(['She', 'The woman', 'The lady', 'The female'])
     
     if is_smiling and len(qualities) == 0 and len(extras) == 0:
+        # If the person is only smiling
         return sentence + ' is smiling.'
     
     if is_smiling and smile_begin:
+        # If there are other attributes, but sentence should begin with is smiling
         sentence += ' is smiling'
         sentence += ' and' if len(qualities) == 0 else ',' if len(qualities) > 0 else ''
 
@@ -221,6 +263,7 @@ def generate_appearance(appearance, is_male):
                 sentence += ' ' +  attribute + ','
 
     if is_smiling and not smile_begin:
+        # If there are other attributes, but sentence should end with is smiling
         if len(extras) == 0:
             sentence = sentence.replace(' and', ',')
             sentence += ' and'
@@ -249,10 +292,18 @@ def generate_appearance(appearance, is_male):
 
 # Accessories
 def generate_accessories(accessories, is_male):
+    '''
+    Generates a sentence based on the accessories defined by the attributes
+    '''
+
     sentence = 'He' if is_male else 'She'
     sentence += ' is wearing'
 
     def necktie_and_hat(attribute):
+        '''
+        Returns a grammatically correct sentence based on the attribute
+        '''
+
         if attribute == 'necktie' or attribute == 'hat' or attribute == 'necklace':
             return 'a ' + attribute
         return attribute
@@ -277,7 +328,7 @@ def generate_accessories(accessories, is_male):
 
 #################### Test ####################
 
-# test_features = [['High_Cheekbones', 'Oval_Face'], ['Chubby'], ['Chubby', 'Double_Chin'], ['High_Cheekbones', 'Chubby'], ['High_Cheekbones', 'Chubby', 'Oval_Face']]
+# test_features = [['High_Cheekbones', 'Oval_Face', 'Chubby'], ['Chubby'], ['Double_Chin', 'Chubby'], ['High_Cheekbones', 'Chubby'], ['High_Cheekbones', 'Oval_Face', 'Chubby']]
 # for f in test_features:
 # 	print(generate_face_structure(f, False))
 
@@ -304,6 +355,7 @@ def generate_accessories(accessories, is_male):
 
 #################### Working ####################
 
+# New dict for storing image_ids and their description
 new_dict = {'image_id': [], 'text_description': []}
 
 for i in tqdm(df.index):
@@ -321,6 +373,8 @@ for i in tqdm(df.index):
     description = ''
     
     for attr in df.loc[i , 'attributes']:
+        # Creating feature array
+
         if attr in face_structure:
             face_structure_arr.append(attr)
         
@@ -342,6 +396,7 @@ for i in tqdm(df.index):
         elif attr == 'Male':
             is_male = True
     
+    # Generating sentences for each set of attributes
     if face_structure_arr != []:
         face_structure_txt = generate_face_structure(face_structure_arr, is_male)
         description += face_structure_txt + ' '
@@ -366,8 +421,9 @@ for i in tqdm(df.index):
         accessories_txt = generate_accessories(accessories_arr, is_male)
         description += accessories_txt + ' '
     
+    # Adding to new dict
     new_dict['image_id'].append(image_id)
     new_dict['text_description'].append(description.strip())
 
-
+# Saving into csv
 pd.DataFrame(data=new_dict).to_csv('scripts/dataset/text_descr_celeba.csv', index=False)
