@@ -1,10 +1,13 @@
 import random
+random.seed(0)
 
 import pandas as pd
 import numpy as np
 
+from tqdm import tqdm
+
 df = pd.read_csv('scripts/dataset/list_attr_celeba.csv')
-df = df.head()
+# df = df.head(21)
 # Numpy array of dataframe column names
 cols = np.array(df.columns)
 
@@ -12,8 +15,7 @@ cols = np.array(df.columns)
 b = (df.values == 1)
 
 # List comprehension to join column names for each boolean row result
-df['attributes'] = [', '.join(cols[(row_index)]) for row_index in b]
-df['attributes'] = df['attributes'].str.split(', ', expand = True).values.tolist()
+df['attributes'] = [cols[(row_index)] for row_index in b]
 
 
 # Facial Structure
@@ -118,9 +120,9 @@ def generate_hairstyle(hairstyle_attributes, is_male):
                     return sentence + ' ' + random.choice([f'hair is {colour} and {style}.', f'hair is {colour} and {style} in style.'])
 
             if style is not None:
-                return sentence + ' hair is ' + style + '.'
+                return sentence + ' hair is ' + style + random.choice(['.', ' in style.'])
             else:
-                return sentence + ' hair is ' + colour + ' in colour.'
+                return sentence + ' hair is ' + colour + random.choice(['.', ' in colour.'])
         else:
             sentence = 'He' if is_male else 'She'
             
@@ -133,7 +135,7 @@ def generate_hairstyle(hairstyle_attributes, is_male):
             if style is not None:
                 return sentence + ' has ' + style + ' hair.'
             else:
-                return sentence + ' hair ' + colour + ' hair.'
+                return sentence + ' has ' + colour + ' hair.'
 
     if len(hairstyle_attributes) == 1:
     
@@ -196,6 +198,9 @@ def generate_appearance(appearance, is_male):
     extras = list(set(appearance) & {'Pale_Skin', 'Heavy_Makeup', 'Rosy_Cheeks'})
 
     sentence = random.choice(['He', 'The man', 'The gentleman', 'The male']) if is_male else random.choice(['She', 'The woman', 'The lady', 'The female'])
+    
+    if is_smiling and len(qualities) == 0 and len(extras) == 0:
+        return sentence + ' is smiling.'
     
     if is_smiling and smile_begin:
         sentence += ' is smiling'
@@ -280,7 +285,7 @@ def generate_accessories(accessories, is_male):
 # for f in test_features:
 # 	print(generate_facial_hair(f, True))
 
-# test_features = [['Straight_Hair', 'Brown_Hair'], ['Bald'], ['Receding_Hairline', 'Brown_Hair'], ['Wavy_Hair', 'Gray_Hair'], ['Straight_Hair', 'Blond_Hair']]
+# test_features = [['Straight_Hair', 'Brown_Hair'], ['Bald'], ['Receding_Hairline', 'Brown_Hair'], ['Wavy_Hair', 'Gray_Hair'], ['Straight_Hair', 'Blond_Hair'], ['Black_Hair'],['Straight_Hair']]
 # for f in test_features:
 # 	print(generate_hairstyle(f, True))
 
@@ -299,7 +304,11 @@ def generate_accessories(accessories, is_male):
 
 #################### Working ####################
 
-for i in df.index:
+new_dict = {'image_id': [], 'text_description': []}
+
+for i in tqdm(df.index):
+
+    image_id = df.loc[i, 'image_id']
     
     face_structure_arr = []
     facial_hair_arr = []
@@ -330,10 +339,8 @@ for i in df.index:
         elif attr in accessories:
             accessories_arr.append(attr)
         
-        elif attr is 'Male':
+        elif attr == 'Male':
             is_male = True
-    
-    print(i)
     
     if face_structure_arr != []:
         face_structure_txt = generate_face_structure(face_structure_arr, is_male)
@@ -359,10 +366,8 @@ for i in df.index:
         accessories_txt = generate_accessories(accessories_arr, is_male)
         description += accessories_txt + ' '
     
-    print('Face Structure: ' ,face_structure_arr)
-    print('Facial Hair: ', facial_hair_arr)
-    print('Hairstyle: ', hairstyle_arr)
-    print('Facial Features: ', facial_features_arr)
-    print('Appearance: ', appearance_arr)
-    print('Accessories: ', accessories_arr)
-    print('Description: ', description)
+    new_dict['image_id'].append(image_id)
+    new_dict['text_description'].append(description.strip())
+
+
+pd.DataFrame(data=new_dict).to_csv('scripts/dataset/text_descr_celeba.csv', index=False)
