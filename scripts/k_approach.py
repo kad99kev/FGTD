@@ -277,7 +277,11 @@ def generate_appearance(appearance, is_male):
         return sentence + '.'
     elif len(extras) == 1:
         if len(qualities) > 0 or is_smiling:
-            if smile_begin:
+            if smile_begin and len(qualities) != 0:
+                # To handle sentences with only smiling
+                sentence = sentence[:-1]
+            if len(qualities) > 1:
+                # To handle sentences with only qualities
                 sentence = sentence[:-1]
             sentence += ' and'
         return sentence + ' has ' + extras[0].lower() + '.'
@@ -348,9 +352,9 @@ def generate_accessories(accessories, is_male):
 # for f in test_features:
 # 	print(generate_facial_features(f, True))
 
-# test_features = [['Attractive', 'Young', 'Pale_Skin', 'Smiling', 'Rosy_Cheeks'], ['Smiling', 'Rosy_Cheeks'], ['Smiling', 'Rosy_Cheeks'], ['Attractive', 'Rosy_Cheeks'], ['Attractive', 'Smiling', 'Rosy_Cheeks', 'Heavy_Makeup'], ['Rosy_Cheeks', 'Heavy_Makeup'], ['Rosy_Cheeks', 'Heavy_Makeup', 'Smiling'], ['Young', 'Attractive'], ['Young', 'Attractive', 'Smiling'], ['Young'], ['Rosy_Cheeks']]
-# for f in test_features:
-# 	print(generate_appearance(f, True))
+test_features = [['Attractive', 'Young', 'Pale_Skin', 'Smiling', 'Rosy_Cheeks'], ['Smiling', 'Rosy_Cheeks'], ['Smiling', 'Rosy_Cheeks'], ['Attractive', 'Rosy_Cheeks'], ['Attractive', 'Smiling', 'Rosy_Cheeks', 'Heavy_Makeup'], ['Rosy_Cheeks', 'Heavy_Makeup'], ['Rosy_Cheeks', 'Heavy_Makeup', 'Smiling'], ['Young', 'Attractive'], ['Young', 'Attractive', 'Heavy_Makeup'], ['Young'], ['Rosy_Cheeks']]
+for f in test_features:
+	print(generate_appearance(f, True))
 
 # test_features = [['Wearing_Earrings', 'Wearing_Hat', 'Wearing_Lipstick'], ['Wearing_Necktie', 'Eyeglasses'], ['Wearing_Lipstick', 'Wearing_Necktie']]
 # for f in test_features:
@@ -360,74 +364,74 @@ def generate_accessories(accessories, is_male):
 #################### Working ####################
 
 # New dict for storing image_ids and their description
-new_dict = {'image_id': [], 'text_description': []}
+# new_dict = {'image_id': [], 'text_description': []}
 
-for i in tqdm(df.index):
+# for i in tqdm(df.index):
 
-    image_id = df.loc[i, 'image_id']
+#     image_id = df.loc[i, 'image_id']
     
-    face_structure_arr = []
-    facial_hair_arr = []
-    hairstyle_arr = []
-    facial_features_arr = []
-    appearance_arr = []
-    accessories_arr = []
-    is_male = False
+#     face_structure_arr = []
+#     facial_hair_arr = []
+#     hairstyle_arr = []
+#     facial_features_arr = []
+#     appearance_arr = []
+#     accessories_arr = []
+#     is_male = False
 
-    description = ''
+#     description = ''
     
-    for attr in df.loc[i , 'attributes']:
-        # Creating feature array
+#     for attr in df.loc[i , 'attributes']:
+#         # Creating feature array
 
-        if attr in face_structure:
-            face_structure_arr.append(attr)
+#         if attr in face_structure:
+#             face_structure_arr.append(attr)
         
-        elif attr in facial_hair:
-            facial_hair_arr.append(attr)
+#         elif attr in facial_hair:
+#             facial_hair_arr.append(attr)
         
-        elif attr in hairstyle:
-            hairstyle_arr.append(attr)
+#         elif attr in hairstyle:
+#             hairstyle_arr.append(attr)
         
-        elif attr in facial_features:
-            facial_features_arr.append(attr)
+#         elif attr in facial_features:
+#             facial_features_arr.append(attr)
 
-        elif attr in appearance:
-            appearance_arr.append(attr)
+#         elif attr in appearance:
+#             appearance_arr.append(attr)
 
-        elif attr in accessories:
-            accessories_arr.append(attr)
+#         elif attr in accessories:
+#             accessories_arr.append(attr)
         
-        elif attr == 'Male':
-            is_male = True
+#         elif attr == 'Male':
+#             is_male = True
     
-    # Generating sentences for each set of attributes
-    if face_structure_arr != []:
-        face_structure_txt = generate_face_structure(face_structure_arr, is_male)
-        description += face_structure_txt + ' '
+#     # Generating sentences for each set of attributes
+#     if face_structure_arr != []:
+#         face_structure_txt = generate_face_structure(face_structure_arr, is_male)
+#         description += face_structure_txt + ' '
     
-    if facial_hair_arr != []:
-        facial_hair_txt = generate_facial_hair(facial_hair_arr, is_male)
-        description += facial_hair_txt + ' '
+#     if facial_hair_arr != []:
+#         facial_hair_txt = generate_facial_hair(facial_hair_arr, is_male)
+#         description += facial_hair_txt + ' '
     
-    if hairstyle_arr != []:
-        hairstyle_txt = generate_hairstyle(hairstyle_arr, is_male)
-        description += hairstyle_txt + ' '
+#     if hairstyle_arr != []:
+#         hairstyle_txt = generate_hairstyle(hairstyle_arr, is_male)
+#         description += hairstyle_txt + ' '
     
-    if facial_features_arr != []:
-        facial_features_txt = generate_facial_features(facial_features_arr, is_male)
-        description += facial_features_txt + ' '
+#     if facial_features_arr != []:
+#         facial_features_txt = generate_facial_features(facial_features_arr, is_male)
+#         description += facial_features_txt + ' '
 
-    if appearance_arr != []:
-        appearance_txt = generate_appearance(appearance_arr, is_male)
-        description += appearance_txt + ' '
+#     if appearance_arr != []:
+#         appearance_txt = generate_appearance(appearance_arr, is_male)
+#         description += appearance_txt + ' '
 
-    if accessories_arr != []:
-        accessories_txt = generate_accessories(accessories_arr, is_male)
-        description += accessories_txt + ' '
+#     if accessories_arr != []:
+#         accessories_txt = generate_accessories(accessories_arr, is_male)
+#         description += accessories_txt + ' '
     
-    # Adding to new dict
-    new_dict['image_id'].append(image_id)
-    new_dict['text_description'].append(description.strip())
+#     # Adding to new dict
+#     new_dict['image_id'].append(image_id)
+#     new_dict['text_description'].append(description.strip())
 
-# Saving into csv
-pd.DataFrame(data=new_dict).to_csv('scripts/dataset/text_descr_celeba.csv', index=False)
+# # Saving into csv
+# pd.DataFrame(data=new_dict).to_csv('scripts/dataset/text_descr_celeba.csv', index=False)
