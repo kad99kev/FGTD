@@ -428,6 +428,13 @@ for i in tqdm(df.index):
     if accessories_arr != []:
         accessories_txt = generate_accessories(accessories_arr, is_male)
         description += accessories_txt + ' '
+
+    if description == '':
+        # All attributes are not present, then only use gender to construct simple sentence
+        if is_male:
+            description = 'There is a ' + random.choice(['man', 'gentleman', 'male']) + '.'
+        else:
+            description = 'There is a ' + random.choice(['woman', 'lady', 'female']) + '.'
     
     # Adding to new dict
     new_dict['image_id'].append(image_id)
