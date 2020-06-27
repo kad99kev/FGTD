@@ -278,7 +278,7 @@ def generate_appearance(appearance, is_male):
             if smile_begin and len(qualities) != 0:
                 # To handle sentences with only smiling
                 sentence = sentence[:-1]
-            if len(qualities) > 1:
+            if len(qualities) > 1 and not is_smiling:
                 # To handle sentences with only qualities
                 sentence = sentence[:-1]
             sentence += ' and'
@@ -457,4 +457,4 @@ for i in tqdm(df.index):
     new_dict['text_description'].append(description.strip())
 
 # Saving into csv
-pd.DataFrame(data=new_dict).to_csv('text_shuffle_descr_celeba.csv', index=False)
+pd.DataFrame(data=new_dict).to_csv('scripts/dataset/text_shuffle_descr_celeba.csv', index=False)

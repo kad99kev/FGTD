@@ -280,7 +280,7 @@ def generate_appearance(appearance, is_male):
             if smile_begin and len(qualities) != 0:
                 # To handle sentences with only smiling
                 sentence = sentence[:-1]
-            if len(qualities) > 1:
+            if len(qualities) > 1 and not is_smiling:
                 # To handle sentences with only qualities
                 sentence = sentence[:-1]
             sentence += ' and'
@@ -352,8 +352,8 @@ def generate_accessories(accessories, is_male):
 # for f in test_features:
 # 	print(generate_facial_features(f, True))
 
-# test_features = [['Attractive', 'Young', 'Pale_Skin', 'Smiling', 'Rosy_Cheeks'], ['Smiling', 'Rosy_Cheeks'], ['Smiling', 'Rosy_Cheeks'], ['Attractive', 'Rosy_Cheeks'], ['Attractive', 'Smiling', 'Rosy_Cheeks', 'Heavy_Makeup'], ['Rosy_Cheeks', 'Heavy_Makeup'], ['Rosy_Cheeks', 'Heavy_Makeup', 'Smiling'], ['Young', 'Attractive'], ['Young', 'Attractive', 'Heavy_Makeup'], ['Young'], ['Rosy_Cheeks']]
-# for f in test_features:
+# test_features = [['Attractive', 'Young', 'Pale_Skin', 'Smiling', 'Rosy_Cheeks'], ['Smiling', 'Rosy_Cheeks'], ['Smiling', 'Rosy_Cheeks'], ['Attractive', 'Rosy_Cheeks'], ['Attractive', 'Smiling', 'Rosy_Cheeks', 'Heavy_Makeup'], ['Rosy_Cheeks', 'Heavy_Makeup'], ['Rosy_Cheeks', 'Heavy_Makeup', 'Smiling'], ['Young', 'Attractive'], ['Young', 'Attractive', 'Heavy_Makeup'], ['Young', 'Attractive', 'Smiling', 'Heavy_Makeup'], ['Young'], ['Rosy_Cheeks']]
+# for i, f in enumerate(test_features):
 # 	print(generate_appearance(f, True))
 
 # test_features = [['Wearing_Earrings', 'Wearing_Hat', 'Wearing_Lipstick'], ['Wearing_Necktie', 'Eyeglasses'], ['Wearing_Lipstick', 'Wearing_Necktie']]
