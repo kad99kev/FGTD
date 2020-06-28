@@ -246,11 +246,17 @@ def generate_appearance(appearance, is_male):
     if is_smiling and smile_begin:
         # If there are other attributes but sentence should begin with is smiling
         sentence += ' is smiling'
-        sentence += ',' if len(qualities) > 0 else ''
+        sentence += ',' if len(qualities) > 0 or len(extras) > 1 else ''
+
+    # print(f'After check smiling begin: {sentence}')
 
     if len(qualities) == 1:
+        if len(extras) == 0 and smile_begin: 
+          # To remove the comma from above
+          sentence = sentence[:-1]
+          sentence += ' and'
         sentence += random.choice([' looks', ' is', ' seems']) + ' ' + qualities[0].lower()
-        sentence += ',' if len(extras) > 1 else ''
+        sentence += ',' if len(extras) > 1 or (is_smiling and not smile_begin) else '' # To add a comma for smiling
     elif len(qualities) > 1:
         sentence += random.choice([' looks', ' is', ' seems'])
         for i in range(len(qualities)):
@@ -262,11 +268,12 @@ def generate_appearance(appearance, is_male):
             else:
                 sentence += ' ' +  attribute + ','
 
+    # print(f'After qualities: {sentence}')
+
     if is_smiling and not smile_begin:
         # If there are other attributes but is smiling comes later
         if len(extras) == 0:
-            sentence = sentence.replace(' and', ',')
-            sentence += ' and'
+            sentence = sentence.replace(',', ' and')
         sentence += ' is smiling'
         sentence += ',' if len(extras) > 1 else ''
 
@@ -277,11 +284,9 @@ def generate_appearance(appearance, is_male):
         return sentence + '.'
     elif len(extras) == 1:
         if len(qualities) > 0 or is_smiling:
-            if smile_begin and len(qualities) != 0:
-                # To handle sentences with only smiling
-                sentence = sentence[:-1]
-            if len(qualities) > 1 and not is_smiling:
-                # To handle sentences with only qualities
+            # If smiling or qualities exist, then add an and
+            if len(qualities) > 1 and ((is_smiling and smile_begin) or not is_smiling):
+                # To remove the last comma from the qualities if smiling is at beginning
                 sentence = sentence[:-1]
             sentence += ' and'
         return sentence + ' has ' + extras[0].lower() + '.'
@@ -352,9 +357,15 @@ def generate_accessories(accessories, is_male):
 # for f in test_features:
 # 	print(generate_facial_features(f, True))
 
-# test_features = [['Attractive', 'Young', 'Pale_Skin', 'Smiling', 'Rosy_Cheeks'], ['Smiling', 'Rosy_Cheeks'], ['Smiling', 'Rosy_Cheeks'], ['Attractive', 'Rosy_Cheeks'], ['Attractive', 'Smiling', 'Rosy_Cheeks', 'Heavy_Makeup'], ['Rosy_Cheeks', 'Heavy_Makeup'], ['Rosy_Cheeks', 'Heavy_Makeup', 'Smiling'], ['Young', 'Attractive'], ['Young', 'Attractive', 'Heavy_Makeup'], ['Young', 'Attractive', 'Smiling', 'Heavy_Makeup'], ['Young'], ['Rosy_Cheeks']]
+# test_features = [['Attractive', 'Young', 'Pale_Skin', 'Smiling', 'Rosy_Cheeks'], ['Smiling', 'Rosy_Cheeks'], ['Smiling', 'Attractive'], 
+#     ['Smiling', 'Attractive'], ['Smiling', 'Attractive'], ['Smiling', 'Attractive'], ['Smiling', 'Attractive', 'Rosy_Cheeks'], ['Attractive', 'Rosy_Cheeks'], ['Attractive', 'Smiling', 'Rosy_Cheeks', 'Heavy_Makeup'], 
+#     ['Rosy_Cheeks', 'Heavy_Makeup'], ['Rosy_Cheeks', 'Heavy_Makeup', 'Smiling'], ['Young', 'Attractive'], ['Young', 'Attractive', 'Heavy_Makeup'], 
+#     ['Young', 'Attractive', 'Smiling', 'Heavy_Makeup'], ['Smiling', 'Rosy_Cheeks']
+#     ['Smiling'], 
+#     ['Young'], ['Rosy_Cheeks']
+# ]
 # for i, f in enumerate(test_features):
-# 	print(generate_appearance(f, True))
+# 	print(f'{i + 1}.', generate_appearance(f, True))
 
 # test_features = [['Wearing_Earrings', 'Wearing_Hat', 'Wearing_Lipstick'], ['Wearing_Necktie', 'Eyeglasses'], ['Wearing_Lipstick', 'Wearing_Necktie']]
 # for f in test_features:
