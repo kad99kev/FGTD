@@ -462,4 +462,4 @@ for i in tqdm(df.index):
     new_dict['text_description'].append(description.strip())
 
 # Saving into csv
-pd.DataFrame(data=new_dict).to_csv('scripts/dataset/text_shuffle_descr_celeba.csv', index=False)
+pd.DataFrame(data=new_dict).to_csv('dataset/text_shuffle_descr_celeba.csv', index=False)
