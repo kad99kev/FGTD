@@ -3,7 +3,7 @@ import random
 
 import numpy as np
 
-from .vocab import create_and_save_dictionary_from_csv
+from .vocab import create_and_save_dictionary_from_csv, create_and_save_dictionary_from_df
 
 np.random.seed(0)
 
@@ -12,16 +12,20 @@ class Tokenizer:
     DataLoader class to load dictionary and perform tokenization tasks
     '''
 
-    def __init__(self, saved_location, csv_source=None, word_dict=None):
+    def __init__(self, saved_location, csv_source=None, df=None, word_dict=None):
 
         self.EOS = 0
         self.UNK = 1
 
         if saved_location:
             print(f'Loading saved dictionary from {saved_location}')
-            word_dict, sentences, max_len = create_and_save_dictionary_from_csv(saved_location, csv_source)
+            assert csv_source is not None or df is not None, "Please provide a single source to read from"
+            if csv_source is not None:
+                word_dict, max_len = create_and_save_dictionary_from_csv(saved_location, csv_source)
+            if df is not None:
+                word_dict, max_len = create_and_save_dictionary_from_df(saved_location, df)
 
-        assert sentences is not None and word_dict is not None, "Please provide a file to extract dictionary from."
+        assert word_dict is not None, "Please provide a file to extract dictionary from."
 
         self.VOCAB_SIZE = len(word_dict)
         self.MAX_LEN = max_len + 1
