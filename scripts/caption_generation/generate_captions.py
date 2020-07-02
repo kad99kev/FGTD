@@ -7,7 +7,7 @@ import numpy as np
 from tqdm import tqdm
 
 # Read CSV
-df = pd.read_csv('scripts/dataset/list_attr_celeba.csv')
+df = pd.read_csv('dataset/list_attr_celeba.csv')
 # df = df.head(21)
 
 # Numpy array of dataframe column names
@@ -52,6 +52,7 @@ Functions to convert attributes to sentences
 2. To introduce variations, different choice of words are used, however it is ensured that the grammatical structure is maintained.
 
 '''
+
 # Face Strucute 
 def generate_face_structure(face_attributes, is_male):
     '''
@@ -93,6 +94,7 @@ def generate_face_structure(face_attributes, is_male):
         
         return sentence
 
+
 # Facial Hair
 def generate_facial_hair(facial_hair_attributes, is_male):
     '''
@@ -122,6 +124,7 @@ def generate_facial_hair(facial_hair_attributes, is_male):
                 sentence = sentence + ' and ' + conj + ' ' + attribute + '.'
         return sentence
 
+
 # Hairstyle 
 def generate_hairstyle(hairstyle_attributes, is_male):
     '''
@@ -130,61 +133,66 @@ def generate_hairstyle(hairstyle_attributes, is_male):
 
     hair_type = {'Bald', 'Straight_Hair', 'Wavy_Hair', 'Receding_Hairline'}
 
-    def return_formation(is_male, style=None, colour=None):
-        ''' 
-        Returns a sentence formation based on the gender, style and colour
-        Made this a function inorder to cover different variations for description
-        '''
-        
+    # To create grammatically correct order of description
+    arranged_attributes = []
+    colours = list(set(hairstyle_attributes) - hair_type)
+    if len(colours) > 1:
+        # Combines two colours into one attribute
+        colour = ''
+        for i, _colour in enumerate(colours):
+            if i == 0:
+                _colour = _colour.lower().split('_')[0] + 'ish'
+            _colour = _colour.lower().split('_')[0]
+            colour += _colour + ' '
+        arranged_attributes.append(colour.strip()) # Strip to remove trailing whitespace
+    elif len(colours) == 1:
+        colour = colours[0].lower().split('_')[0]
+        arranged_attributes.append(colour)
+    style = set(hairstyle_attributes) & {'Straight_Hair', 'Wavy_Hair'}
+    arranged_attributes.extend(list(style))
+    bald_rec = set(hairstyle_attributes) & {'Receding_Hairline', 'Bald'}
+    arranged_attributes.extend(list(bald_rec))
+
+    if len(arranged_attributes) == 1:
+        attribute = arranged_attributes[0].lower().split('_')[0]
+        if attribute == 'bald':
+            return 'He is bald.' if is_male else 'She is bald.'
         if random.random() <= 0.5:
             sentence = 'His' if is_male else 'Her'
-
-            if style is not None and colour is not None:
-                if random.random() <= 0.5:
-                    return sentence + ' ' + random.choice([f'hair is {style} and {colour} in colour.', f'hair is {style} and {colour}.'])
-                else:
-                    return sentence + ' ' + random.choice([f'hair is {colour} and {style}.', f'hair is {colour} and {style} in style.'])
-
-            if style is not None:
-                return sentence + ' hair is ' + style + random.choice(['.', ' in style.'])
-            else:
-                return sentence + ' hair is ' + colour + random.choice(['.', ' in colour.'])
+            return sentence + ' hair is ' + attribute + '.'
         else:
             sentence = 'He' if is_male else 'She'
-            
-            if style is not None and colour is not None:
-                if random.random() <= 0.5:
-                    return sentence + ' ' + random.choice([f'has {style} hair which is {colour} in colour.', f'has {style} hair which is {colour}.', f'has {style} {colour} hair.'])
-                else:
-                    return sentence + ' ' + random.choice([f'has {colour} hair which is {style} in style.', f'has {colour} hair which is {style}.', f'has {colour} {style} hair.'])
-            
-            if style is not None:
-                return sentence + ' has ' + style + ' hair.'
-            else:
-                return sentence + ' has ' + colour + ' hair.'
-
-    if len(hairstyle_attributes) == 1:
+            return sentence + ' has ' + attribute + ' hair.'
     
-        attribute = hairstyle_attributes[0].lower().split('_')[0]
-        
-        if attribute == 'bald':
-            sentence = 'He' if is_male else 'She'
-            return sentence + ' is ' + attribute + '.' 
-        
-        if hairstyle_attributes[0] in hair_type:
-            return return_formation(is_male, style=attribute)
-        else:
-            return return_formation(is_male, colour=attribute)
-
+    # Adding variation in sentence structure
+    if random.random() <= 0.5:
+        sentence = 'His' if is_male else 'Her'
+        sentence += ' hair is'
+        for i, attribute in enumerate(arranged_attributes):
+            attribute = attribute.lower().split('_')[0]
+            if len(arranged_attributes) - 1 == i:
+                sentence = sentence[:-1]
+                if attribute == 'bald':
+                    attribute = 'he' if is_male else 'she'
+                    attribute += ' is ' + random.choice(['going', 'partially']) + ' bald'
+                    return sentence + ' and ' + attribute + '.'
+                return sentence + ' and ' + attribute + '.'
+            sentence += ' ' + attribute + ','
     else:
-        if hairstyle_attributes[0] in hair_type:
-            style = hairstyle_attributes[0].lower().split('_')[0]
-            colour = hairstyle_attributes[1].lower().split('_')[0]
-            return return_formation(is_male, style, colour)
-        else:
-            style = hairstyle_attributes[1].lower().split('_')[0]
-            colour = hairstyle_attributes[0].lower().split('_')[0]
-            return return_formation(is_male, style, colour)
+        sentence = 'He' if is_male else 'She'
+        sentence += ' has'
+        for i, attribute in enumerate(arranged_attributes):
+            attribute = attribute.lower().split('_')[0]
+            if len(arranged_attributes) - 1 == i:
+                sentence = sentence[:-1]
+                if attribute == 'bald':
+                    sentence += ' hair'
+                    attribute = 'he' if is_male else 'she'
+                    attribute += ' is ' + random.choice(['going', 'partially']) + ' bald'
+                    return sentence + ' and ' + attribute + '.'
+                return sentence + ' and ' + attribute + ' hair.'
+            sentence += ' ' + attribute + ','
+
 
 # Facial Features
 def generate_facial_features(facial_features, is_male):
@@ -303,6 +311,7 @@ def generate_appearance(appearance, is_male):
 
         return sentence + '.'
 
+
 # Accessories
 def generate_accessories(accessories, is_male):
     '''
@@ -349,9 +358,9 @@ def generate_accessories(accessories, is_male):
 # for f in test_features:
 # 	print(generate_facial_hair(f, True))
 
-# test_features = [['Straight_Hair', 'Brown_Hair'], ['Bald'], ['Receding_Hairline', 'Brown_Hair'], ['Wavy_Hair', 'Gray_Hair'], ['Straight_Hair', 'Blond_Hair'], ['Black_Hair'],['Straight_Hair']]
-# for f in test_features:
-# 	print(generate_hairstyle(f, True))
+# test_features = [['Straight_Hair', 'Brown_Hair'], ['Bald'], ['Bald', 'Gray_Hair'], ['Bald', 'Receding_Hairline'], ['Receding_Hairline', 'Brown_Hair'], ['Wavy_Hair', 'Gray_Hair'], ['Straight_Hair', 'Blond_Hair'], ['Black_Hair'],['Straight_Hair']]
+# for i, f in enumerate(test_features):
+# 	print(f'{i + 1}.', generate_hairstyle(f, True))
 
 # test_features = [['Big_Lips', 'Big_Nose', 'Mouth_Slightly_Open'], ['Narrow_Eyes'], ['Big_Lips', 'Mouth_Slightly_Open', 'Bushy_Eyebrows'], ['Big_Nose', 'Arched_Eyebrows'], ['Arched_Eyebrows', 'Mouth_Slightly_Open', 'Bushy_Eyebrows']]
 # for f in test_features:
