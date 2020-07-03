@@ -102,11 +102,17 @@ def generate_facial_hair(facial_hair_attributes, is_male):
     sentence = 'He' if is_male else 'She'
     
     if len(facial_hair_attributes) == 1:
-        attribute = ' '.join(facial_hair_attributes[0].lower().split('_')) if facial_hair_attributes[0] != '5_o_Clock_Shadow' else '5 o\' clock shadow'
-        return sentence + ' ' + random.choice(build) + ' ' + attribute + '.'
+        attribute = facial_hair_attributes[0].lower() if facial_hair_attributes[0] != '5_o_Clock_Shadow' else '5 o\' clock shadow'
+        conj = random.choice(build)
+
+        if attribute == 'sideburns':
+            # Sideburns is plural, dropping 'a'
+            conj = 'has'
+        
+        return sentence + ' ' + conj + ' ' + attribute + '.'
     else:
         for i in range(len(facial_hair_attributes)):
-            attribute = ' '.join(facial_hair_attributes[i].lower().split('_')) if facial_hair_attributes[i] != '5_o_Clock_Shadow' else '5 o\' clock shadow'
+            attribute = facial_hair_attributes[i].lower() if facial_hair_attributes[i] != '5_o_Clock_Shadow' else '5 o\' clock shadow'
             conj = random.choice(build)
 
             if attribute == 'sideburns':
