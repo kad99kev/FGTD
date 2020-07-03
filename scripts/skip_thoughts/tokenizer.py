@@ -38,6 +38,8 @@ class Tokenizer:
         Converts a sentence to its indices
         '''
 
+        sentence = self.__preprocess_sentence(sentence)
+
         indices = [
             self.word_dict.get(w) if self.word_dict.get(w, self.VOCAB_SIZE + 1) < self.VOCAB_SIZE else self.UNK
             for w in sentence.split()
