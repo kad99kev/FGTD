@@ -23,3 +23,10 @@ We have implemented different GAN variations on the MNIST dataset on our path to
  ___
  
  - [cGAN](CGAN)
+
+ ![cGANs demo](CGAN/assets/digitmnist-cgan.gif)
+ 
+
+ - [ACGAN](ACGAN)
+
+ ![ACGANs demo](ACGAN/assets/fashionmnist-acgan.gif)
