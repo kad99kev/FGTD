@@ -6,10 +6,7 @@ Conditional GAN is a generative adversarial network whose Generator and Discrimi
 During CGAN training, the Generator learns to produce realistic examples for each label in the training dataset, and the Discriminator learns to distinguish fake example-label pairs from real example-label pairs.
 
 ### CGANs architecture
-![arc](assets/architecture.jpg)
-
-### Training a cGAN
-Finally, now that we have all of the parts of the GAN framework defined, we can train it. However, training GANs is somewhat of an art form, as incorrect hyperparameter settings lead to mode collapse with little explanation of what went wrong.
+![CGANs architecture](assets/architecture.jpg)
 
 ### References
  - [Conditional Generative Adversarial Nets](https://arxiv.org/pdf/1411.1784.pdf)
