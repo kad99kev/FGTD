@@ -26,6 +26,7 @@ We have implemented different GAN variations on the MNIST dataset on our path to
 
  ![cGANs demo](CGAN/assets/digitmnist-cgan.gif)
  
+ ___
 
  - [ACGAN](ACGAN)
 
