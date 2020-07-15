@@ -1,3 +1,3 @@
-# Text-to-Image
+# Face-Generator
 Image synthesis from Text
 
