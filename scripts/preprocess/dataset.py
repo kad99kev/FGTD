@@ -89,7 +89,7 @@ def generate_weights(arr, num_classes):
         weights[i] = sum(weight_per_class[idxs])
     return weights
 
-def get_weighted_dataloader(image_location, attribute_csv_path, text_desc_location, transforms=None, subset_size=10000, batch_size=64):
+def get_weighted_dataloader(image_location, attribute_csv_path, text_desc_location, transform=None, subset_size=10000, batch_size=64):
     # Get random indices
     random_indices = torch.randperm(subset_size)
     print('Length of random indices:', len(random_indices))
@@ -106,7 +106,7 @@ def get_weighted_dataloader(image_location, attribute_csv_path, text_desc_locati
     sampler = torch.utils.data.sampler.WeightedRandomSampler(weights, len(weights))
 
     # Create dataset
-    dataset = ImageTextDataset(image_location,  text_desc_location, transform=transforms)
+    dataset = ImageTextDataset(image_location,  text_desc_location, transform=transform)
 
     # Create subset of dataset
     subset_dataset = torch.utils.data.Subset(dataset, random_indices)

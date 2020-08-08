@@ -8,7 +8,7 @@ class SentenceEncoder:
         self.bert_model = SentenceTransformer('bert-base-nli-mean-tokens').to(device)
         self.device = device
 
-    def convert_text_to_embeddings(batch_text):
+    def convert_text_to_embeddings(self, batch_text):
         stack = []
         for sent in batch_text:
             l = sent.split('. ')
