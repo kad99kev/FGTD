@@ -7,13 +7,7 @@ DCGANs are a class of convolutional GANs, where both the generator and discrimin
 
 ### DCGAN architecture
 
-**Generator Architecture**
-![generator_arch](assets/gen_arch.png)
-
-
-**Overall Architecture**
-
-![overall_arch](assets/overall_arch.png)
+![generator_arch](assets/DCGAN.jpg)
 
 
 
