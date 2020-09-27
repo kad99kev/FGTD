@@ -23,7 +23,7 @@ As we are still undergrad students, we decided to not only build our main GAN, b
 
 🔗 [Code, References and Output](https://github.com/kad99kev/Face-Generator/tree/master/MNIST-GANs/GAN)
 
-### Step 2. Progressed Our Way Up To Understanding Other GAN Architectures On The Digit and Fashion MNIST datasets. 👗 👕
+### Step 2. Progressed Our Way Up To Understanding Other GAN Architectures On The Digit and Fashion MNIST Datasets. 👗 👕
 
 🔗 [Deep Convolution GANS - Code, References and Output](https://github.com/kad99kev/Face-Generator/tree/master/MNIST-GANs/DCGAN)
 
