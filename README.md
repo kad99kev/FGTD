@@ -8,7 +8,7 @@
 
 🔹 [Our future plans](#future-plans)
 
-🔹 [Refernce Papers](#reference-papers)
+🔹 [Reference Papers](#reference-papers)
 
 ## Motivation  
 
