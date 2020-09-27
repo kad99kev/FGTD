@@ -11,15 +11,15 @@ However, as we are still undergrad students, we decided to not only build our ma
 
 **Step 1. We started with Simple GANs on the MNIST digit dataset** 🔢
 
-🔗 [Code, References and Output]
+🔗 [Code, References and Output](https://github.com/kad99kev/Face-Generator/tree/master/MNIST-GANs/GAN)
 
 **Step 2. Progressed our way up to understanding other GAN architectures on the digit and fashion MNIST datasets.** 👗 👕
 
-🔗 [Conditional GANS Code, References and Output]
+🔗 [Conditional GANS Code, References and Output](https://github.com/kad99kev/Face-Generator/tree/master/MNIST-GANs/CGAN)
 
-🔗 [Auxillary Conditional GANS Code, References and Output]
+🔗 [Auxillary Conditional GANS Code, References and Output](https://github.com/kad99kev/Face-Generator/tree/master/MNIST-GANs/ACGAN)
 
-🔗 [Deep Convolution GANS Code, References and Output]
+🔗 [Deep Convolution GANS Code, References and Output](https://github.com/kad99kev/Face-Generator/tree/master/MNIST-GANs/DCGAN)
 
 **Step 3. Researched about past implementations on the topic**
 (Some of the research paper links)
@@ -28,6 +28,27 @@ However, as we are still undergrad students, we decided to not only build our ma
 * [Text2FaceGAN : Face Generation from Fine Grained Description](https://arxiv.org/pdf/1911.11378.pdf) 
 * [Generative Adverserial Text to Image Synthesis](https://arxiv.org/pdf/1605.05396.pdf)
 
+
+**Step 4. Created a meaningful text dataset using Celeb-A**
+
+Here, the challenege faced was to create meaningful sentences using a mutli-labelled dataset. We considered the following 6 cateogeries 
+
+  🔸 The structure of the face
+  
+  🔸 The facical hairstyle the person sports
+  
+  🔸 The description of other facical features
+  
+  🔸 The hairstyle of the person
+  
+  🔸 Attriubutes that enhance his appearance
+  
+  🔸 Accessories worn (if any)
+  
+  An example of one of the sentences from the dataset
+   <img src = "assets/dataset.png">
+  
+  
 
 
 
