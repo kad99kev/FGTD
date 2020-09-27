@@ -6,7 +6,7 @@ The ACGAN like any normal GAN consists of a generator and a discriminator. Howev
 The architecture of the generator in ACGAN is similar to that of the cGAN, however the main difference is in the discriminator model, which is only provided with the image as input, unlike the cGAN that is provided with the image and class label as input. The discriminator model must then predict whether the given image is real or fake as before, and must also predict the class label of the image.
 
 ### ACGANs architecture
-<img src="assets/ACGAN.jpg" width="600" height="600"/>
+<img src="assets/ACGAN.jpg" width="750" height="750"/>
 
 ### References
  - [Conditional Image Synthesis With Auxiliary Classifier GANs](https://arxiv.org/pdf/1610.09585.pdf)
