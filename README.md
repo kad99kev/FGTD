@@ -1,4 +1,4 @@
-# [🔗Text2Face using Generative Adverserial Networks 📝  2️⃣ 👧👱]()
+# [🔗 Face Generation from Textual Description using Generative Adverserial Networks 📝  2️⃣ 👧👱]()
 
 🔹 [Motivation](#motivation)
 
