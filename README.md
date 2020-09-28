@@ -75,7 +75,7 @@ Check it out [here]()
 The code for the same can be found [here]()
 
 ## Results
-<img src="assets/result.png>
+ <img src = "assets/result.png" >
 
 ## Challenges We Faced
 
