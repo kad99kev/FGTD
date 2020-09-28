@@ -1,5 +1,6 @@
 # Face Generation from Textual Description using Generative Adverserial Networks 📝  2️⃣ 👧👱 
-Check it out [here](http://www.ekkm.xyz/)
+
+**🔗 [Link to the demo app](http://www.ekkm.xyz/)**
 
 🔹 [Motivation](#motivation)
 
