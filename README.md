@@ -23,15 +23,15 @@ As we are still undergrad students, we decided to not only build our main GAN, b
 
 ### Step 1. We Started With Simple GANs On The MNIST Digit Dataset🔢
 
-🔗 [Code, References and Output](https://github.com/kad99kev/Face-Generator/tree/master/MNIST-GANs/GAN)
+🔗 [Code, References and Output](https://github.com/ELITA04/Face-Generator/tree/master/MNIST-GANs/GAN)
 
 ### Step 2. Progressed Our Way Up To Understanding Other GAN Architectures On The Digit and Fashion MNIST Datasets. 👗 👕
 
-🔗 [Deep Convolution GANS - Code, References and Output](https://github.com/kad99kev/Face-Generator/tree/master/MNIST-GANs/DCGAN)
+🔗 [Deep Convolution GANS - Code, References and Output](https://github.com/ELITA04/Face-Generator/tree/master/MNIST-GANs/DCGAN)
 
-🔗 [Conditional GANS - Code, References and Output](https://github.com/kad99kev/Face-Generator/tree/master/MNIST-GANs/CGAN)
+🔗 [Conditional GANS - Code, References and Output](https://github.com/ELITA04/Face-Generator/tree/master/MNIST-GANs/CGAN)
 
-🔗 [Auxillary Conditional GANS - Code, References and Output](https://github.com/kad99kev/Face-Generator/tree/master/MNIST-GANs/ACGAN)
+🔗 [Auxillary Conditional GANS - Code, References and Output](https://github.com/ELITA04/Face-Generator/tree/master/MNIST-GANs/ACGAN)
 
 We documented our losses and make a report of our learnings using **Weights & Biases ✨**. The report can be found [here](https://wandb.ai/kad99kev/mnist-gans/reports/MNIST-GANs--VmlldzoyMTE4NzE).
 
@@ -82,6 +82,7 @@ The code for the same can be found [here](https://github.com/kad99kev/FGTD-Strea
 
 2. Using a Progressive or Hierarchical structure gave promising results, however it also consumes a lot of resources at the same time often leading to CUDA out of resource errors.
 
+3. We’ve only maintained a wandb report for the initial MNIST GANs which we mentioned earlier. Nevertheless, we also have plans to make one for our Face GANs.
 
 ## Reference Papers
 
