@@ -6,8 +6,6 @@
 
 🔹 [Results](#results)
 
-🔹 [Challenges we faced](#challenges-we-faced)
-
 🔹 [Future Scope](#future-scope)
 
 🔹 [Reference Papers](#reference-papers)
@@ -77,9 +75,11 @@ The code for the same can be found [here](https://github.com/kad99kev/FGTD-Strea
 ## Results
  <img src = "assets/result.png" >
 
-## Challenges We Faced
-
 ## Future Scope
+1. We did try self attention along with spectral normalization, however the results obtained were not upto expectations. However, we still believe this avenue could potentially lead to better results.
+
+2. Using a Progressive or Hierarchical structure gave promising results, however it also consumes a lot of resources at the same time often leading to CUDA out of resource errors.
+
 
 ## Reference Papers
 
