@@ -6,7 +6,7 @@
 
 🔹 [Challenges we faced](#challenges-we-faced)
 
-🔹 [Our future plans](#future-plans)
+🔹 [Future Scope](#future-scope)
 
 🔹 [Reference Papers](#reference-papers)
 
@@ -74,7 +74,7 @@ The code for the same can be found [here]()
 
 ## Challenges We Faced
 
-## Future Plans
+## Future Scope
 
 ## Reference Papers
 
