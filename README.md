@@ -62,9 +62,9 @@ Here, the challenege faced was to create meaningful sentences using a mutli-labe
   
   ### Step 5. Created A Pipeline To Try Out Different Architectures
   P.S We've added some of our notebooks. While our work is far from perfect we'd appreciate if you check them out and give valuable feedback.
-  - []()
-  - []()
-  - []()
+  :white_small_square: [DCGANS with Skip thought embeddings](https://colab.research.google.com/drive/1JDNojILmxeF5nUkYeNe6xank2gfvVML6?usp=sharing)
+  :white_small_square: [DCGANS with BERT embbeddings](https://colab.research.google.com/drive/1J4tdVVluwmij9jPvtKTaBd7cQZp6FDr1?usp=sharing)
+  :white_small_square: [HDGANS with BERT embeddings](https://colab.research.google.com/drive/1dWGRdtlqrvCt9OUX8Y1f0SjjHEIxI2Uo?usp=sharing)
 
 
 ### Step 6. Created A Streamlit Application To Showcase Our Work
