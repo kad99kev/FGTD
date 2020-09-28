@@ -70,9 +70,9 @@ Here, the challenege faced was to create meaningful sentences using a mutli-labe
 
 
 ### Step 6. Created A Streamlit Application To Showcase Our Work
-Check it out [here]()
+Check it out [here](www.ekkm.xyz)
 
-The code for the same can be found [here]()
+The code for the same can be found [here](https://github.com/kad99kev/FGTD-Streamlit)
 
 ## Results
  <img src = "assets/result.png" >
