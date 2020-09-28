@@ -2,7 +2,9 @@
 
 🔹 [Motivation](#motivation)
 
-🔹 [Our Progress Ladder](#our-progress-ladder)
+🔹 [Progress Ladder](#progress-ladder)
+
+🔹 [Results](#results)
 
 🔹 [Challenges we faced](#challenges-we-faced)
 
@@ -17,7 +19,7 @@ So, our aim is to focus on a less addressed domain of face generation from fine-
 
 As we are still undergrad students, we decided to not only build our main GAN, but also a ladder of GANs that helped strengthen our understanding, in hopes to inspire others.
 
-## Our Progress Ladder 
+## Progress Ladder 
 
 ### Step 1. We Started With Simple GANs On The MNIST Digit Dataset🔢
 
@@ -71,6 +73,9 @@ Here, the challenege faced was to create meaningful sentences using a mutli-labe
 Check it out [here]()
 
 The code for the same can be found [here]()
+
+## Results
+<img src="assets/result.png>
 
 ## Challenges We Faced
 
