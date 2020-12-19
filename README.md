@@ -1,6 +1,6 @@
 # Face Generation from Textual Description using Generative Adverserial Networks 📝  2️⃣ 👧👱 
 
-**🔗 [Link to the demo app](http://www.ekkm.xyz/)**
+**🔗 [Link to the demo app](https://share.streamlit.io/elita04/fgtd-streamlit/app.py)**
 
 🔹 [Motivation](#motivation)
 
