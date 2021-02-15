@@ -11,19 +11,20 @@ from tqdm.notebook import tqdm
 np.random.seed(0)
 torch.manual_seed(0)
 
+
 class ImageTextDataset(torch.utils.data.Dataset):
-    '''
+    """
     Meant for CelebA Dataset'.
     Pairs True Image, True Text and Wrong Image
-    '''
+    """
 
     def __init__(self, root_dir, csv_file, transform=None):
-        '''
+        """
         Args:
             root_dir (string): Directory with all the images.
             csv_file (string): Path to the csv file with annotations.
             transform (callable, optional): Optional transform to be applied on a sample.
-        '''
+        """
         self.text_df = pd.read_csv(csv_file)
         self.length = len(self.text_df)
         self.root_dir = root_dir
@@ -58,28 +59,30 @@ class ImageTextDataset(torch.utils.data.Dataset):
 
         return true_image, true_text, wrong_image
 
+
 def process_data(attribute_csv_path):
-    '''
+    """
     Cleans attributes dataframe based on the preprocessing performed for text generation.
-    '''
+    """
 
     # Read from csv files
     attributes_df = pd.read_csv(attribute_csv_path)
 
     # Drop columns
-    drop_cols = {'Bags_Under_Eyes', 'Bangs', 'Blurry', 'No_Beard'}
-    attributes_df = attributes_df.drop(columns = drop_cols)
-    only_attributes = attributes_df.drop(columns = 'image_id')
+    drop_cols = {"Bags_Under_Eyes", "Bangs", "Blurry", "No_Beard"}
+    attributes_df = attributes_df.drop(columns=drop_cols)
+    only_attributes = attributes_df.drop(columns="image_id")
     classes = set(only_attributes)
-    print('Classes present: ', classes)
-    print('Number of classes: ', len(classes))
+    print("Classes present: ", classes)
+    print("Number of classes: ", len(classes))
 
     return only_attributes, classes
 
+
 def generate_weights(arr, num_classes):
-    '''
+    """
     Generates weights based on the counts of each label.
-    '''
+    """
 
     # To get the count of each label
     counts = np.zeros(num_classes)
@@ -91,7 +94,7 @@ def generate_weights(arr, num_classes):
     N = float(sum(counts))
     weight_per_class = np.zeros(num_classes)
     for i in range(num_classes):
-        weight_per_class[i]  = N / counts[i]
+        weight_per_class[i] = N / counts[i]
 
     # Calculating final weights
     weights = [0.0] * len(arr)
@@ -100,46 +103,63 @@ def generate_weights(arr, num_classes):
         weights[i] = sum(weight_per_class[idxs])
     return weights
 
-def get_weighted_dataloader(attribute_csv_path, custom_dataset=None, image_location=None, text_desc_location=None, transform=None, subset_size=10000, batch_size=64):
-    '''
+
+def get_weighted_dataloader(
+    attribute_csv_path,
+    custom_dataset=None,
+    image_location=None,
+    text_desc_location=None,
+    transform=None,
+    subset_size=10000,
+    batch_size=64,
+):
+    """
     Computes weights based on labels and creates a weighted dataloader.
     Get a weighted dataloader for:
         [1] Default ImageTextDataset: Returns -> Real Image, Real Text, Wrong Image
             Requires: image_location, text_desc_location in specified format
         [2] Custom Dataset
-    '''
-    
+    """
+
     # Get random indices
     random_indices = torch.randperm(subset_size)
-    print('Length of random indices:', len(random_indices))
+    print("Length of random indices:", len(random_indices))
 
     only_attributes, classes = process_data(attribute_csv_path)
 
     only_attributes = only_attributes.iloc[random_indices]
-    print('Length of subset dataset:', len(only_attributes))
+    print("Length of subset dataset:", len(only_attributes))
 
     # Generate weights
     weights = generate_weights(only_attributes.values, len(classes))
-    
+
     # Sample based on weights
     sampler = torch.utils.data.sampler.WeightedRandomSampler(weights, len(weights))
 
     # Create dataset
     if custom_dataset is not None:
-        print('Using Custom Dataset Loader...')
+        print("Using Custom Dataset Loader...")
         dataset = custom_dataset
     else:
         if image_location is None:
-            raise NotImplementedError('Image directory not specified')
+            raise NotImplementedError("Image directory not specified")
         if text_desc_location is None:
-            raise NotImplementedError('Text path not specified')
-        print('Using ImageTextDataset loader...')
-        dataset = ImageTextDataset(image_location,  text_desc_location, transform=transform)
+            raise NotImplementedError("Text path not specified")
+        print("Using ImageTextDataset loader...")
+        dataset = ImageTextDataset(
+            image_location, text_desc_location, transform=transform
+        )
 
     # Create subset of dataset
     subset_dataset = torch.utils.data.Subset(dataset, random_indices)
 
     # Create weighted loader
-    weighted_dataloader = torch.utils.data.DataLoader(subset_dataset, batch_size = batch_size, shuffle = False, sampler = sampler, pin_memory = True)
+    weighted_dataloader = torch.utils.data.DataLoader(
+        subset_dataset,
+        batch_size=batch_size,
+        shuffle=False,
+        sampler=sampler,
+        pin_memory=True,
+    )
 
     return weighted_dataloader, iter(weighted_dataloader)
