@@ -1,9 +1,12 @@
 # Face Generation from Textual Description using Generative Adverserial Networks 📝  2️⃣ 👧👱 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/ELITA04/FGTD-Streamlit/app.py/)
 
+*Under Construction!*
 
-🔹 [Motivation](#motivation)
+---
 
-🔹 [Progress Ladder](#progress-ladder)
+🔹 [Abstract](#abstract)
+
+🔹 [Notebooks](#progress-ladder)
 
 🔹 [Results](#results)
 
@@ -11,70 +14,27 @@
 
 🔹 [Reference Papers](#reference-papers)
 
-## Motivation  
+---
 
-Powerful Generative Adverserial Networks have been used in the past to automatically synthesize realistic images from text. However, these existing tasks have been used for simpler tasks such as flowers and birds.
-So, our aim is to focus on a less addressed domain of face generation from fine-granined textual description of faces.
+## Abstract  
 
-As we are still undergrad students, we decided to not only build our main GAN, but also a ladder of GANs that helped strengthen our understanding, in hopes to inspire others.
+Majority of current text-to-image generation tasks are limited to creating images like flowers (Oxford 102 Flower), birds (CUB-200-2011), and Common Objects (COCO) from captions. The existing face datasets such as Labeled Faces in the Wild and MegaFace lack description while datasets like CelebA have attributes associated but do not provide feature descriptions. Thus, in this paper we build upon an existing algorithm to create captions with the attributes provided in the CelebA dataset, which can not only generate one caption but it can also be extended to generate N captions per image. We utilise Sentence BERT to encode these descriptions into sentence embeddings. We then perform a comparative study of three models - DCGAN, SAGAN and DFGAN, by using these sentence embeddings along with a latent noise as the inputs to the different architectures. Finally, we calculate the Inception Scores and the FID values to compare the output images across different architectures.
 
-## Progress Ladder 
+---
 
-### Step 1. We Started With Simple GANs On The MNIST Digit Dataset🔢
+## Notebooks
 
-🔗 [Code, References and Output](https://github.com/ELITA04/Face-Generator/tree/master/MNIST-GANs/GAN)
+### MNIST
+| Model        | Colab Link     |
+| ------------- |-------------|
+| [Vanilla GAN](MNIST-GANs/GAN)      | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1setqmENPRRriznB8j2XL55RjSkMfMWCf?usp=sharing) |
+| [DCGAN](MNIST-GANs/DCGAN)     | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1cBsnZTL0bp7o9lfBez1FyedDxo2Yf6wh?usp=sharing)      |
+| [CGAN](MNIST-GANs/CGAN) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1X7xD1sX3iJggqMuDvnn7EtIUIsc5GDDn?usp=sharing)      |
+| [ACGAN](MNIST-GANs/ACGAN) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1-OGeMxST6jFvSc5cq_Oc_-9ItqJ86taP?usp=sharing)      |
 
-### Step 2. Progressed Our Way Up To Understanding Other GAN Architectures On The Digit and Fashion MNIST Datasets. 👗 👕
+### Face
 
-🔗 [Deep Convolution GANS - Code, References and Output](https://github.com/ELITA04/Face-Generator/tree/master/MNIST-GANs/DCGAN)
-
-🔗 [Conditional GANS - Code, References and Output](https://github.com/ELITA04/Face-Generator/tree/master/MNIST-GANs/CGAN)
-
-🔗 [Auxillary Conditional GANS - Code, References and Output](https://github.com/ELITA04/Face-Generator/tree/master/MNIST-GANs/ACGAN)
-
-We documented our losses and make a report of our learnings using **Weights & Biases ✨**. The report can be found [here](https://wandb.ai/kad99kev/mnist-gans/reports/MNIST-GANs--VmlldzoyMTE4NzE).
-
-### Step 3. Researched About Past Implementations On The Topic
-(Some of the research paper links)
-
-* [FTGAN : A fully Generative Adverserial Network for Text to Face Generation](https://arxiv.org/pdf/1904.05729.pdf)
-* [Text2FaceGAN : Face Generation from Fine Grained Description](https://arxiv.org/pdf/1911.11378.pdf) 
-* [Generative Adverserial Text to Image Synthesis](https://arxiv.org/pdf/1605.05396.pdf)
-
-
-### Step 4. Created A Meaningful Text Dataset Using Celeb-A
-
-Here, the challenege faced was to create meaningful sentences using a mutli-labelled dataset. We considered the following 6 cateogeries:
-
-  🔸 The structure of the face
-  
-  🔸 The facical hairstyle the person sports
-  
-  🔸 The description of other facical features
-  
-  🔸 The hairstyle of the person
-  
-  🔸 Attributes that enhance his appearance
-  
-  🔸 Accessories worn (if any)
-  
-  An example of one of the sentences from the dataset
-   <img src = "assets/dataset.png">
-  
-  ### Step 5. Created A Pipeline To Try Out Different Architectures
-  P.S We've added some of our notebooks. While our work is far from perfect we'd appreciate if you check them out and give valuable feedback.
-  
-  :white_small_square: [DCGANS with Skip thought embeddings](https://colab.research.google.com/drive/1JDNojILmxeF5nUkYeNe6xank2gfvVML6?usp=sharing)
-  
-  :white_small_square: [DCGANS with BERT embbeddings](https://colab.research.google.com/drive/1J4tdVVluwmij9jPvtKTaBd7cQZp6FDr1?usp=sharing)
-  
-  :white_small_square: [HDGANS with BERT embeddings](https://colab.research.google.com/drive/1dWGRdtlqrvCt9OUX8Y1f0SjjHEIxI2Uo?usp=sharing)
-
-
-### Step 6. Created A Streamlit Application To Showcase Our Work
-Check it out [here](http://www.ekkm.xyz/)
-
-The code for the same can be found [here](https://github.com/kad99kev/FGTD-Streamlit)
+---
 
 ## Results
  <img src = "assets/result.png" >
@@ -85,6 +45,8 @@ The code for the same can be found [here](https://github.com/kad99kev/FGTD-Strea
 2. Using a Progressive or Hierarchical structure gave promising results, however it also consumes a lot of resources at the same time often leading to CUDA out of resource errors.
 
 3. We’ve only maintained a wandb report for the initial MNIST GANs which we mentioned earlier. Nevertheless, we also have plans to make one for our Face GANs.
+
+---
 
 ## Reference Papers
 

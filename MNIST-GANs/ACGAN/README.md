@@ -1,4 +1,4 @@
-# Auxillary Classifier Generative Adversarial Network (cGAN)
+# Auxillary Classifier Generative Adversarial Network (ACGAN)
 
 ### What are ACGANs?
 The ACGAN like any normal GAN consists of a generator and a discriminator. However, in ACGANs, every generated sample has a corresponding class label (that belongs to the available classes) in addition to the noise. This class label helps the model to generate images based on the label given.
