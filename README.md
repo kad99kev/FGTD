@@ -1,8 +1,6 @@
 # Face Generation from Textual Description using Generative Adverserial Networks 📝  2️⃣ 👧👱 
 [![Open in Streamlit](https://img.shields.io/badge/Open%20In%20Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)](https://share.streamlit.io/ELITA04/FGTD-Streamlit/app.py/) [![Visualize in WandB](https://raw.githubusercontent.com/wandb/assets/main/wandb-github-badge-28.svg)](https://wandb.ai/ekkm/text-to-face?workspace=user-) ![PyTorch](https://img.shields.io/badge/Made%20With%20PyTorch-EE4C2C?style=for-the-badge&logo=PyTorch&logoColor=white)
 
-*Under Construction!*
-
 ---
 
 ## Table of Contents
