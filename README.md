@@ -1,5 +1,5 @@
 # Face Generation from Textual Description using Generative Adverserial Networks 📝  2️⃣ 👧👱 
-[![Open in Streamlit](https://img.shields.io/badge/Open%20In%20Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)](https://share.streamlit.io/ELITA04/FGTD-Streamlit/app.py/) [![Visualize in WandB](https://raw.githubusercontent.com/wandb/assets/main/wandb-github-badge-28.svg)](https://wandb.ai/ekkm/text-to-face?workspace=user-kad99kev) ![PyTorch](https://img.shields.io/badge/Made%20With%20PyTorch-EE4C2C?style=for-the-badge&logo=PyTorch&logoColor=white)
+[![Open in Streamlit](https://img.shields.io/badge/Open%20In%20Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)](https://share.streamlit.io/ELITA04/FGTD-Streamlit/app.py/) [![Visualize in WandB](https://raw.githubusercontent.com/wandb/assets/main/wandb-github-badge-28.svg)](https://wandb.ai/ekkm/text-to-face?workspace=user-) ![PyTorch](https://img.shields.io/badge/Made%20With%20PyTorch-EE4C2C?style=for-the-badge&logo=PyTorch&logoColor=white)
 
 *Under Construction!*
 
@@ -19,7 +19,7 @@
 
 🔹 [Future Scope](#future-scope)
 
-🔹 [Reference Papers](#reference-papers)
+🔹 [Research Paper and Citation](#research-paper-and-citation)
 
 🔹 [Acknowledgement](#acknowledgement)
 
@@ -85,13 +85,11 @@ We believe that this work can be further improved by:
 
 ---
 
-## Research Paper
+## Research Paper and Citation
 
-* [FTGAN : A fully Generative Adverserial Network for Text to Face Generation](https://arxiv.org/pdf/1904.05729.pdf)
-* [Text2FaceGAN : Face Generation from Fine Grained Description](https://arxiv.org/pdf/1911.11378.pdf) 
-* [Generative Adverserial Text to Image Synthesis](https://arxiv.org/pdf/1605.05396.pdf)
-* [StackGAN: Text to Photo-realistic Image Synthesis with Stacked Generative Adversarial Networks](https://arxiv.org/pdf/1612.03242.pdf)
-* [Skip-Thought Vectors](https://arxiv.org/pdf/1506.06726.pdf)
+* You can find our research paper [here.](assets/FGTD.pdf)
+* Paper has successfully been presented at the [5th International Conference on Inventive Communication and Computational Technologies.](http://icicct.org/2021/index.html)
+* BibTex entry coming soon!
 
 ---
 
