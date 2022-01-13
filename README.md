@@ -87,7 +87,23 @@ We believe that this work can be further improved by:
 
 * You can find our research paper [here.](assets/FGTD.pdf)
 * Paper has successfully been presented at the [5th International Conference on Inventive Communication and Computational Technologies.](http://icicct.org/2021/index.html)
-* BibTex entry coming soon!
+
+## Citation
+```bibtex
+@inproceedings{Deorukhkar_Kadamala_Menezes_2022, 
+  place={Singapore}, 
+  series={Lecture Notes in Networks and Systems}, 
+  title={FGTD: Face Generation from Textual Description}, 
+  ISBN={9789811655296}, 
+  DOI={10.1007/978-981-16-5529-6_43}, 
+  publisher={Springer}, 
+  author={Deorukhkar, Kalpana and Kadamala, Kevlyn and Menezes, Elita}, 
+  editor={Ranganathan, G. and Fernando, Xavier and Shi, Fuqian}, 
+  year={2022}, 
+  pages={547–562}, 
+  collection={Lecture Notes in Networks and Systems} 
+}
+```
 
 ---
 
