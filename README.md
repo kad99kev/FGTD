@@ -87,6 +87,7 @@ We believe that this work can be further improved by:
 
 * You can find our research paper [here.](assets/FGTD.pdf)
 * Paper has successfully been presented at the [5th International Conference on Inventive Communication and Computational Technologies.](http://icicct.org/2021/index.html)
+* Link to Paper - https://link.springer.com/chapter/10.1007/978-981-16-5529-6_43
 
 ## Citation
 ```bibtex
